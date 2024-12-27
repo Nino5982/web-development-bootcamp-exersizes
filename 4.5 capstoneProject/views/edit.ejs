@@ -1,0 +1,31 @@
+<%- include("partials/header.ejs") %>
+<h1>articles</h1>
+<% if (blogsArray[postID]) { %>
+
+<form action="/articles/<%= postID %>/edit" method="POST">
+  <input
+    name="title"
+    type="text"
+    class="feedback-input"
+    placeholder="title"
+    value="<%= blogsArray[postID].title %>" />
+  <input
+    name="author"
+    type="text"
+    class="feedback-input"
+    placeholder="author"
+    value="<%= blogsArray[postID].author %>" />
+
+  <textarea name="text" class="feedback-input" placeholder="Comment">
+
+
+
+
+ <%= blogsArray[postID].author %></textarea
+  >
+  <input type="submit" value="SUBMIT" />
+</form>
+<% } else { %>
+<p>there is no post yet</p>
+
+<% } %> <%- include("partials/footer.ejs") %>

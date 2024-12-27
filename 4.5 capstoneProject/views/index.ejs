@@ -1,0 +1,25 @@
+<%- include("partials/header.ejs") %>
+
+<div class="title-wrapper">
+  <h1 class="title">welcome to my blog</h1>
+  <a href="/create" class="create-article btn"
+    ><i class="fa-solid fa-pen"></i>create new post</a
+  >
+</div>
+<div class="articles--wrapper">
+  <h2>you can see all blogs</h2>
+  <ul>
+    <% if (blogsArray.length > 0) { %> <% blogsArray.forEach((post, index) => {
+    %>
+    <li class="article-item">
+      <a href="/articles/<%= index %>"> <%= post.title %></a>
+    </li>
+
+    <% }) %>; <% } else { %>
+    <li class="article-item">
+      <p>there is no post yet</p>
+    </li>
+    <% } %>
+  </ul>
+</div>
+<%- include("partials/footer.ejs") %>

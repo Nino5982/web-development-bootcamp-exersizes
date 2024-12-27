@@ -1,0 +1,43 @@
+<%- include("partials/header.ejs") %>
+
+<div class="articles--wrapper">
+  <div class="article">
+    <% if (blogsArray[postID]) { %>
+
+    <h1 class="title"><%= blogsArray[postID].title %></h1>
+    <span class="article__author"><%= blogsArray[postID].author %></span>
+
+    <p class="article__text"><%= blogsArray[postID].text%></p>
+  </div>
+  <div class="features">
+    <a href="/articles/<%=postID%>/edit" class="btn">edit</a>
+    <button class="btn" onclick="deletePost('<%=postID%>')">delete</button>
+    <a href="/create" class="create-article btn"
+      ><i class="fa-solid fa-pen"></i>create new post</a
+    >
+  </div>
+  <% } else { %>
+
+  <p>there is no post yet</p>
+
+  <% } %>
+</div>
+<%- include("partials/footer.ejs") %>
+
+<script>
+  async function deletePost(postID) {
+    const confirmation = confirm("Are you sure you want to delete this post?");
+
+    if (!confirmation) return;
+    const response = await fetch(`/articles/${postID}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      alert("Post deleted successfully");
+      window.location.href = "/"; // დაბრუნება მთავარ გვერდზე
+    } else {
+      alert("Failed to delete the post");
+    }
+  }
+</script>
